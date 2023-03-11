@@ -35,13 +35,13 @@ const MessageOptions = ({
     : (offset: number) => GF.trending({ offset, limit: 10 });
 
   return (
-    // @todo remove isOpen to div container containing this component?
     <div
       className="options-panel"
       style={{
         height: isOpen ? "320px" : "0",
         padding: isOpen ? "1rem 1rem" : "0 1rem",
         overflowY: isOpen ? "scroll" : "hidden",
+        opacity: isOpen ? "1" : "0",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -129,8 +129,7 @@ const MessageOptions = ({
           />
         )}
       </div>
-      <div>
-        {/* @todo absolute position this at the top right? */}
+      <div className="total-cost">
         <label>Total Cost</label>
         <span style={{ margin: " 0 .5rem" }}>{totalCost}</span>
       </div>

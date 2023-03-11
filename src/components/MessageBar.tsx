@@ -10,7 +10,6 @@ const MessageBar = () => {
     currentAccount,
     contract,
     postMessage,
-    testPostMessage,
     isPostingMessage,
     calculateTotalFee,
   } = useAccountContext();
@@ -23,7 +22,7 @@ const MessageBar = () => {
     calculateTotalFee(messageDuration, customText, gifId)
   );
 
-  const canPost = contract && currentAccount && !isPostingMessage; // @todo after testing, remove this
+  const canPost = contract && currentAccount && !isPostingMessage;
   const buttontext = canPost ? "Add Message" : "Connect Wallet";
   const inputPlaceholder = canPost
     ? "Post Message"
@@ -32,8 +31,8 @@ const MessageBar = () => {
     cursor: canPost ? "pointer" : "not-allowed",
   };
 
-  const runTest = () => {
-    postMessage(message, messageDuration, customText, gifId); // @todo after testing, switch testPostMessage() back to postMessage()
+  const handleSubmit = () => {
+    postMessage(message, messageDuration, customText, gifId);
     setCustomText("");
     setGifId("");
     setMessage("");
@@ -107,7 +106,7 @@ const MessageBar = () => {
             <button
               className="message-post-button"
               style={styles}
-              onClick={() => runTest()} // @todo after testing, switch back to postMessage()
+              onClick={() => handleSubmit()}
               disabled={!canPost}
             >
               {buttontext}

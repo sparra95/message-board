@@ -115,10 +115,12 @@ button:focus-visible {
 
 .navbar .account-text {
   margin: 0 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
 }
 
 .navbar-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
 }
 
@@ -181,8 +183,13 @@ button:focus-visible {
   padding: 0.1rem 0.8rem;
 }
 
+/****************************/
+/****** MESSAGE OPTIONS *****/
+/****************************/
+
 /* @todo add smooth transition @keyframes?, remove conditional rendering from UI */
 .options-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -197,6 +204,12 @@ button:focus-visible {
   display: flex;
   white-space: nowrap;
   max-height: 200px;
+}
+
+.options-panel .total-cost {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 /****************************/
