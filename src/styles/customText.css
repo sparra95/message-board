@@ -1,0 +1,79 @@
+/***************************/
+/******* NEON TEXT *********/
+/***************************/
+
+.text__container {
+  overflow: hidden;
+  position: relative;
+  filter: contrast(120%) brightness(250%);
+}
+.text__container .text {
+  position: relative;
+  background: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1rem;
+  margin: 0;
+  color: transparent;
+  user-select: none;
+}
+.text__container .text::before,
+.text__container .text::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: attr(data-text);
+  color: #fff;
+  filter: blur(0.05rem);
+  pointer-events: none;
+}
+.text__container .text::after {
+  mix-blend-mode: difference;
+}
+.text__container .text__gradient,
+.text__container .text__spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.text__container .text__gradient {
+  background: #007ffe; /* linear-gradient(45deg, #007ffe, #000); */
+  mix-blend-mode: multiply;
+}
+.text__container .text__spotlight {
+  top: -100%;
+  left: -100%;
+  background: radial-gradient(circle, #fff, transparent 25%) 0 0 / 25% 25%,
+    radial-gradient(circle, #fff, #000 25%) 50% 50% / 12.5% 12.5%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transform-style: preserve-3d;
+  mix-blend-mode: color-dodge;
+  animation: light--translate 5s infinite linear;
+}
+@keyframes light--translate {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(50%, 50%, 0);
+  }
+}
+
+/***************************/
+/******* NEON TEXT *********/
+/***************************/
+
+.neon {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00bfff,
+    0 0 30px #00bfff, 0 0 40px #00bfff, 0 0 50px #00bfff, 0 0 75px #00bfff;
+  letter-spacing: 5px;
+}

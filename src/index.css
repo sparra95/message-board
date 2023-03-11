@@ -1,0 +1,282 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* @todo uninstall tailwindCSS */
+/* @todo try to use @layer and new css stuff to style with plain CSS! */
+/* @todo Make MOBILE-FRIENDLY */
+/* @todo Move all inline styles to here */
+
+#root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover,
+.button-active {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.ghost-btn {
+  background-color: transparent;
+  border-color: #ccc;
+  color: #ccc;
+  transition: all 0.25s;
+}
+
+.ghost-btn:hover {
+  border-color: #646cff;
+  color: #646cff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+/*************************/
+/******* NAV BAR *********/
+/*************************/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8em 1.6em;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.navbar .account-text {
+  margin: 0 0.5rem;
+}
+
+.navbar-title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/******************************/
+/******* MESSAGE FEED *********/
+/******************************/
+
+.message-feed {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 1.6em;
+  padding: 1rem;
+  padding-bottom: 6rem; /* @todo fix this, this is to prevent being covered by message-bar fixed at bottom */
+  height: 60vh;
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+.message-bubble {
+  display: flex;
+  padding: 0.75rem;
+  background-color: #000; /* #1a1a1a; */
+  border-radius: 8px;
+  border-bottom-left-radius: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+/*****************************/
+/******* MESSAGE BAR *********/
+/*****************************/
+
+.message-bar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 1rem;
+}
+
+.message-bar div {
+  display: flex;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.message-extras-button {
+  width: 45px;
+  margin: 0px 0.5rem;
+  font-size: 1.5rem;
+  padding: 0.1rem 0.8rem;
+}
+
+/* @todo add smooth transition @keyframes?, remove conditional rendering from UI */
+.options-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 10px;
+  background-color: rgb(26, 26, 26);
+  border-radius: 10px;
+  transition: all 300ms ease-in-out;
+}
+
+.options-panel div {
+  display: flex;
+  white-space: nowrap;
+  max-height: 200px;
+}
+
+/****************************/
+/******* SHINY TEXT *********/
+/****************************/
+
+/*
+
+.shiny-text-container {
+  position: relative;
+  display: inline-block;
+}
+
+.shiny-text-container h2 {
+  color: #f70;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 70px;
+}
+
+.shiny-text-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: shiny-text-mask 3s linear infinite;
+}
+
+.shiny-text-mask > div {
+  width: 20px;
+
+  overflow: hidden;
+  transform: skewX(-30deg);
+}
+
+.shiny-text-mask > div > div {
+  transform: skewX(30deg);
+}
+
+.shiny-text-mask h2 {
+  color: #fff;
+  text-shadow: 0 0 2px #fff;
+  transform: skewX(30deg);
+  animation: shiny-text-text 3s linear infinite;
+}
+
+@keyframes shiny-text-mask {
+  0% {
+    transform: translateX(-30px);
+  }
+  50% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes shiny-text-text {
+  0% {
+    transform: translateX(30px);
+  }
+  50% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(-110%);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
