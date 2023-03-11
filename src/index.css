@@ -176,6 +176,18 @@ button:focus-visible {
   margin: 0px 0.5rem;
   font-size: 1.5rem;
   padding: 0.1rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.message-post-button {
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /****************************/

@@ -60,11 +60,12 @@ const GF = new GiphyFetch("oqTeU24IyRyDllvK20Ls2rX46j2pLmXS");
 // - [x] absolute position price when options panel is open
 // - [x] Fix Header text sizes
 // - [x] Autoconnect to wallet if possible
+// - [x] add icons
 // - [ ] Add disconnect wallet button in navbar
 // - [ ] add mini popup "New Messages <downArrow>" when new message is posted
 // - [x] remove testPostMessage
 // - [ ] add loading spinner when posting message
-// - [ ] remove tailwind
+// - [x] remove tailwind
 // - [ ] properly type ContractMessageNodes
 // - [ ] show wallet balance
 

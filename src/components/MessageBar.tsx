@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAccountContext } from "../context/AccountContextProvider";
 import MessageOptions from "./MessageOptions";
-
-// @todo
-// [ ] useReducer!
+import { BsArrowUpRight } from "react-icons/bs";
+import { AiOutlineSetting } from "react-icons/ai";
 
 const MessageBar = () => {
   const {
@@ -81,7 +80,9 @@ const MessageBar = () => {
             disabled={!canPost}
             onClick={() => setOpenOptionsPanel((prev) => !prev)}
           >
-            {openOptionsPanel ? "-" : "+"}
+            <AiOutlineSetting
+              color={openOptionsPanel ? "#646cff" : "inherit"}
+            />
           </button>
 
           <div style={{ position: "relative" }}>
@@ -109,7 +110,8 @@ const MessageBar = () => {
               onClick={() => handleSubmit()}
               disabled={!canPost}
             >
-              {buttontext}
+              <span>{buttontext}</span>
+              <BsArrowUpRight width="1rem" />
             </button>
           </div>
         </div>
