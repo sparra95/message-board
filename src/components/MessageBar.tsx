@@ -3,15 +3,11 @@ import { useAccountContext } from "../context/AccountContextProvider";
 import MessageOptions from "./MessageOptions";
 import { BsArrowUpRight } from "react-icons/bs";
 import { AiOutlineSetting } from "react-icons/ai";
+import { FaEthereum } from "react-icons/fa";
 
 const MessageBar = () => {
-  const {
-    currentAccount,
-    contract,
-    postMessage,
-    isPostingMessage,
-    calculateTotalFee,
-  } = useAccountContext();
+  const { currentAccount, postMessage, isPostingMessage, calculateTotalFee } =
+    useAccountContext();
   const [message, setMessage] = useState("");
   const [customText, setCustomText] = useState("");
   const [gifId, setGifId] = useState("");
@@ -21,14 +17,33 @@ const MessageBar = () => {
     calculateTotalFee(messageDuration, customText, gifId)
   );
 
-  const canPost = contract && currentAccount && !isPostingMessage;
-  const buttontext = canPost ? "Add Message" : "Connect Wallet";
-  const inputPlaceholder = canPost
-    ? "Post Message"
-    : "Connect wallet to add message";
-  const styles = {
-    cursor: canPost ? "pointer" : "not-allowed",
-  };
+  const canPost = currentAccount && !isPostingMessage;
+
+  // const calculateTotalFee = (
+  //   messageDuration: number,
+  //   customText: string,
+  //   gifId: string
+  // ) => {
+  //   let newCost = FEE;
+
+  //   if (customText !== "") {
+  //     newCost += FEE;
+  //   }
+
+  //   if (gifId !== "") {
+  //     newCost += FEE;
+  //   }
+
+  //   if (messageDuration > 1) {
+  //     newCost += FEE * (messageDuration - 1);
+  //   }
+
+  //   newCost = Number.parseFloat(newCost.toFixed(3));
+
+  //   return newCost;
+  // };
+
+  // totalCost = calculateTotalFee(messageDuration, customText, gifId);
 
   const handleSubmit = () => {
     postMessage(message, messageDuration, customText, gifId);
@@ -39,8 +54,11 @@ const MessageBar = () => {
   };
 
   useEffect(() => {
-    setTotalCost(calculateTotalFee(messageDuration, customText, gifId));
+    const totalFee = calculateTotalFee(messageDuration, customText, gifId);
+    setTotalCost(totalFee);
   }, [gifId, customText, messageDuration]);
+
+  console.log("rendering message bar");
 
   return (
     <div
@@ -70,8 +88,9 @@ const MessageBar = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             disabled={!canPost}
-            placeholder={inputPlaceholder}
-            style={styles}
+            placeholder={
+              canPost ? "Post Message" : "Connect wallet to add message"
+            }
             className="message-input"
           />
           {/* TOGGLE OPTIONS PANEL */}
@@ -90,14 +109,18 @@ const MessageBar = () => {
             <div
               style={{
                 position: "absolute",
-                top: !openOptionsPanel ? "-60%" : "0",
-                left: "10%",
-                color: !openOptionsPanel ? "inherit" : "transparent",
+                top: !openOptionsPanel ? "-2rem" : "0",
+                right: ".5rem",
+                color: !openOptionsPanel ? "#646cff" : "transparent",
                 transition: "all 0.3s ease-in-out",
                 whiteSpace: "nowrap",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <label>Total Cost</label>
+              <label>Total Cost:</label>
+              <FaEthereum fontSize={"1rem"} />
               <span style={{ margin: " 0 .5rem" }}>
                 {calculateTotalFee(messageDuration, customText, gifId)}
               </span>
@@ -106,11 +129,10 @@ const MessageBar = () => {
             {/* POST MESSAGE */}
             <button
               className="message-post-button"
-              style={styles}
               onClick={() => handleSubmit()}
               disabled={!canPost}
             >
-              <span>{buttontext}</span>
+              <span>{canPost ? "Add Message" : "Connect Wallet"}</span>
               <BsArrowUpRight width="1rem" />
             </button>
           </div>

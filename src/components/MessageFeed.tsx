@@ -1,9 +1,12 @@
-import { useAccountContext } from "../context/AccountContextProvider";
 import MessageBubble from "./MessageBubble";
+import { MessageNode } from "../context/AccountContextProvider";
+import { memo } from "react";
 
-const MessageFeed = () => {
-  const { messageNodes } = useAccountContext();
+type Props = {
+  messageNodes: MessageNode[];
+};
 
+const MessageFeed = ({ messageNodes }: Props) => {
   return (
     <div className="message-feed">
       {messageNodes.map((node) => (
@@ -13,4 +16,4 @@ const MessageFeed = () => {
   );
 };
 
-export default MessageFeed;
+export default memo(MessageFeed);

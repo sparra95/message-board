@@ -1,5 +1,5 @@
 import { useAccountContext } from "../context/AccountContextProvider";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Carousel, Gif } from "@giphy/react-components";
 import BasicText from "./BasicText";
 import NeonText from "./NeonText";
@@ -34,13 +34,15 @@ const MessageOptions = ({
     ? (offset: number) => GF.search(gifSearchTerm, { offset, limit: 10 })
     : (offset: number) => GF.trending({ offset, limit: 10 });
 
+  console.log("rednering message options");
+
   return (
     <div
       className="options-panel"
       style={{
-        height: isOpen ? "320px" : "0",
+        height: isOpen ? "380px" : "0",
         padding: isOpen ? "1rem 1rem" : "0 1rem",
-        overflowY: isOpen ? "scroll" : "hidden",
+        overflowX: isOpen ? "scroll" : "hidden",
         opacity: isOpen ? "1" : "0",
       }}
     >
@@ -137,4 +139,4 @@ const MessageOptions = ({
   );
 };
 
-export default MessageOptions;
+export default memo(MessageOptions);
